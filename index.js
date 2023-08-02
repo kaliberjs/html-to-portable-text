@@ -1,1 +1,3 @@
-export { hello } from './src/hello'
+const htmlToPortableText = require('./src/index.js')
+
+module.exports = htmlToPortableText

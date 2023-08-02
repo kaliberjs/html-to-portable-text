@@ -14,33 +14,47 @@
 - run `git push --tags`
 - Send everybody an email to introduce them to your library!
 
-# Library title
-Short description.
-
-## Motivation
-Optionally add a bit of text describing why this library exists.
-
-## Installation
-
-```
-yarn add @kaliber/library
-```
+# Kaliber HTML to portableText plugin
+A plugin for converting html to portableText
 
 ## Usage
-Short example. If your library has multiple ways to use it, show the most used one and refer to `/example` for further examples.
+`htmlToPortableText(html, overrides = {})`
 
-```jsx
-import { hello } from 'library'
+```js
+const htmlToPortableText = require('@kaliber/html-to-portable-text')
 
-function Component() {
-  return <div>{hello()}</div>
+const portableText = processHTML('<p><h1>This</strong><em>is HTML</em></p>')
+
+function processHTML(html) {
+  return removeUndefinedValues(htmlToPortableText(html, { h1: 'heading', h2: 'subheading' }))
+}
+
+function removeUndefinedValues(o) {
+  return JSON.parse(JSON.stringify(o))
 }
 ```
 
-# Reference
-Optionally add a reference, if your library needs it.
+## Development
 
-![](https://media.giphy.com/media/find-a-good-gif/giphy.gif)
+```
+> yarn
+> yarn link
+> yarn watch
+```
+
+```
+yarn link @kaliber/html-to-portable-text
+```
+
+## Publish
+
+```
+yarn publish
+git push
+git push --tags
+```
+---
+![](https://media.giphy.com/media/C6JQPEUsZUyVq/giphy.gif)
 
 ## Disclaimer
 This library is intended for internal use, we provide __no__ support, use at your own risk. It does not import React, but expects it to be provided, which [@kaliber/build](https://kaliberjs.github.io/build/) can handle for you.
