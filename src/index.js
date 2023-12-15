@@ -28,6 +28,10 @@ function htmlToPortableText(html, overrides = {} ) {
     ...overrides,
   }
 
+  const specialNodes = {
+    'br': _ => [addSpanToBlock({ text: '\n', marks: [] })]
+  }
+
   const parsedDOM = htmlparser2.parseDocument(html)
 
   const initialState = { marks: [], level: 0, listItem: null }
@@ -43,6 +47,7 @@ function htmlToPortableText(html, overrides = {} ) {
 
     return (
       node.type === 'text'                 ? handleSpan(node, state) :
+      node.name in specialNodes            ? specialNodes[node.name](node, state) :
       node.name in markNodes               ? handleMarkNode(node, state) :
       node.name in markDefNodes            ? handleMarkDefNode(node, state) :
       node.name in listNodes               ? handleListNode(node, state) :

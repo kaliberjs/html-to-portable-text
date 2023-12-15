@@ -252,6 +252,18 @@ const tests = {
       block({ level: 1, listItem: 'bullet' })(span('mies'), span('wim')),
     ]
   },
+  problematicExample1: {
+    input: `<p>aap<br/>noot<br>mies<br /><br />wim</p>`,
+    output: [
+      block({ style: 'normal' })(
+        span('aap'), span('\n'),
+        span('noot'), span('\n'),
+        span('mies'), span('\n'),
+        span('\n'),
+        span('wim')
+      )
+    ]
+  },
 }
 
 Object.entries(tests).forEach(
@@ -259,6 +271,7 @@ Object.entries(tests).forEach(
     test(k, () => {
 
       const result = htmlToPortableText(input)
+      // console.log(toHTML(result))
       expect(result).toEqual(output)
     })
   }
