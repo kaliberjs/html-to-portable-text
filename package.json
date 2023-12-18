@@ -22,6 +22,9 @@
   "license": "MIT",
   "description": "A plugin for converting html to portableText",
   "repository": "https://github.com/kaliberjs/html-to-portable-text.git",
+  "scripts": {
+    "test": "jest"
+  },
   "dependencies": {
     "htmlparser2": "^9.0.0"
   },
