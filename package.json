@@ -1,6 +1,6 @@
 {
   "name": "@kaliber/html-to-portable-text",
-  "version": "2.0.0",
+  "version": "3.0.1",
   "main": "index.js",
   "sideEffects": false,
   "publishConfig": {
