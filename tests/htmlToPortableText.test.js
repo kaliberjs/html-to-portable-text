@@ -287,7 +287,6 @@ Object.entries(tests).forEach(
     test(k, () => {
 
       const result = htmlToPortableText(input)
-      console.log(result)
       expect(result).toEqual(output)
     })
   }
