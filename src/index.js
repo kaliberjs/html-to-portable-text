@@ -59,9 +59,13 @@ function htmlToPortableText(html, overrides = {} ) {
   }
 
   function handleSpan(node, state) {
-    const containsOnlyWhitespace = /^\s*$/.test(node.data)
+    if (!node.data.length) return []
 
-    return containsOnlyWhitespace ? [] : [addSpanToBlock({ text: node.data, marks: state.marks })]
+    const containsOnlyWhitespace = /^\s+$/.test(node.data)
+    const nodeHasSiblings = node.next || node.previous
+    if (containsOnlyWhitespace && nodeHasSiblings) return []
+
+    return [addSpanToBlock({ text: containsOnlyWhitespace ? ' ' : node.data, marks: state.marks })]
   }
 
   function handleMarkNode(node, state) {
