@@ -281,3 +281,14 @@ const tests = {
     ]
   },
 }
+
+Object.entries(tests).forEach(
+  ([k, { input, output }]) => {
+    test(k, () => {
+
+      const result = htmlToPortableText(input)
+      console.log(result)
+      expect(result).toEqual(output)
+    })
+  }
+)
