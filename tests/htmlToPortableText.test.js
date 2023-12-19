@@ -264,6 +264,22 @@ const tests = {
       )
     ]
   },
+  problematicExample2: {
+    input: `<b><span>aap</span><span> </span><span>noot</span><span></b>`,
+    output: [
+      block({ style: 'normal' })(
+        span('aap', ['strong']), span(' ', ['strong']), span('noot', ['strong'])
+      )
+    ]
+  },
+  problematicExample3: {
+    input: `<ul><li><b><span>aap</span><span> </span><span>noot</span><span></b></li></ul>`,
+    output: [
+      block({ level: 1, listItem: 'bullet' })(
+        span('aap', ['strong']), span(' ', ['strong']), span('noot', ['strong'])
+      )
+    ]
+  },
 }
 
 Object.entries(tests).forEach(
