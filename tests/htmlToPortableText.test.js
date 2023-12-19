@@ -280,6 +280,14 @@ const tests = {
       )
     ]
   },
+  problematicExample4: {
+    input: `<a href='./aap'>aap<br/>noot</a>`,
+    output: [
+      block({ markDefs: [{ _type: 'externalLink', _key: '0', href: './aap' }] })(
+        span('aap', ['0']), span('\n', ['0']), span('noot', ['0'])
+      )
+    ]
+  },
 }
 
 Object.entries(tests).forEach(

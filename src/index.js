@@ -29,7 +29,7 @@ function htmlToPortableText(html, overrides = {} ) {
   }
 
   const specialNodes = {
-    'br': _ => [addSpanToBlock({ text: '\n', marks: [] })]
+    'br': (node, state) => [addSpanToBlock({ text: '\n', marks: state.marks })]
   }
 
   const parsedDOM = htmlparser2.parseDocument(html)
