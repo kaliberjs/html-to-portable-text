@@ -252,7 +252,7 @@ const tests = {
       block({ level: 1, listItem: 'bullet' })(span('mies'), span('wim')),
     ]
   },
-  problematicExample1: {
+  br: {
     input: `<p>aap<br/>noot<br>mies<br /><br />wim</p>`,
     output: [
       block({ style: 'normal' })(
@@ -264,7 +264,15 @@ const tests = {
       )
     ]
   },
-  problematicExample2: {
+  brInA: {
+    input: `<a href='./aap'>aap<br/>noot</a>`,
+    output: [
+      block({ markDefs: [{ _type: 'externalLink', _key: '0', href: './aap' }] })(
+        span('aap', ['0']), span('\n', ['0']), span('noot', ['0'])
+      )
+    ]
+  },
+  spaceInSpan: {
     input: `<b><span>aap</span><span> </span><span>noot</span><span></b>`,
     output: [
       block({ style: 'normal' })(
@@ -272,7 +280,7 @@ const tests = {
       )
     ]
   },
-  problematicExample3: {
+  spaceInSpanInList: {
     input: `<ul><li><b><span>aap</span><span> </span><span>noot</span><span></b></li></ul>`,
     output: [
       block({ level: 1, listItem: 'bullet' })(
@@ -280,6 +288,7 @@ const tests = {
       )
     ]
   },
+
 }
 
 Object.entries(tests).forEach(
