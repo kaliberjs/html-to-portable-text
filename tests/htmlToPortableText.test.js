@@ -1,5 +1,6 @@
-const { expect, test } = require('@jest/globals')
+const { test } = require('node:test')
 const htmlToPortableText = require('../src/index')
+const assert = require('node:assert')
 
 function block(info) {
   return (...children) => ({
@@ -288,6 +289,14 @@ const tests = {
       )
     ]
   },
+  comment: {
+    input: `<ul><li><b><span><!-- aap --></span><span> </span><span>noot</span><span></b></li></ul>`,
+    output: [
+      block({ level: 1, listItem: 'bullet' })(
+        span(' ', ['strong']), span('noot', ['strong'])
+      )
+    ]
+  },
 
 }
 
@@ -296,7 +305,7 @@ Object.entries(tests).forEach(
     test(k, () => {
 
       const result = htmlToPortableText(input)
-      expect(result).toEqual(output)
+      assert.deepStrictEqual(result, output)
     })
   }
 )
