@@ -103,6 +103,9 @@ function htmlToPortableText(html, overrides = {} ) {
   }
 
   function handleChildren(node, state) {
+    if (!node.children)
+      return []
+
     return node.children.flatMap(
       node => domToPortableInstructions(node, { atRoot: false, state })
     )

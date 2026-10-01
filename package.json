@@ -23,12 +23,9 @@
   "description": "A plugin for converting html to portableText",
   "repository": "https://github.com/kaliberjs/html-to-portable-text.git",
   "scripts": {
-    "test": "jest"
+    "test": "node --test"
   },
   "dependencies": {
     "htmlparser2": "^9.0.0"
-  },
-  "devDependencies": {
-    "jest": "^29.6.2"
   }
 }
